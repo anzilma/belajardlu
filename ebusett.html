@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower Animation</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            overflow: hidden;
+        }
+        
+        .flower-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .center {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #FFD700 30%, #FF8C00 100%);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+            z-index: 10;
+        }
+        
+        .petal {
+            position: absolute;
+            width: 100px;
+            height: 40px;
+            border-radius: 50px;
+            background: #FF4081;
+            opacity: 0;
+            transform-origin: 50% 150%;
+            filter: drop-shadow(0 0 4px rgba(255, 64, 129, 0.5));
+            transition: background 1s ease;
+        }
+        
+        @keyframes bloom {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) rotate(0deg);
+            }
+            80% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(360deg);
+            }
+        }
+        
+        .controls {
+            position: absolute;
+            bottom: 30px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            background: #3F51B5;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .color-input {
+            width: 50px;
+            height: 50px;
+            border: 2px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+  <h1>BISA GINI GAK RULLL</h1>
+    <div class="flower-container">
+        <div class="center"></div>
+        <!-- Petals will be added via JavaScript -->
+    </div>
+    
+    <div class="controls">
+        <button id="bloomBtn">Bloom Flower</button>
+        <input type="color" id="colorInput" class="color-input" value="#FF4081">
+        <button id="resetBtn">Reset</button>
+    </div>
+
+    <script>
+        const flowerContainer = document.querySelector('.flower-container');
+        const colorInput = document.getElementById('colorInput');
+        const bloomBtn = document.getElementById('bloomBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        
+        const petalCount = 12;
+        let petals = [];
+        
+        // Create petals
+        for (let i = 0; i < petalCount; i++) {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.style.transform = `rotate(${i * (360 / petalCount)}deg)`;
+            flowerContainer.appendChild(petal);
+            petals.push(petal);
+        }
+        
+        // Bloom animation
+        function bloomFlower() {
+            petals.forEach((petal, index) => {
+                setTimeout(() => {
+                    petal.style.background = colorInput.value;
+                    petal.style.animation = `bloom 1.5s ease forwards`;
+                }, index * 100);
+            });
+        }
+        
+        // Reset animation
+        function resetFlower() {
+            petals.forEach(petal => {
+                petal.style.animation = 'none';
+                petal.style.opacity = '0';
+                // Force reflow to reset animation
+                void petal.offsetWidth;
+            });
+        }
+        
+        // Event listeners
+        bloomBtn.addEventListener('click', bloomFlower);
+        resetBtn.addEventListener('click', resetFlower);
+        
+        // Initial bloom
+        setTimeout(bloomFlower, 500);
+    </script>
+</body>
+</html>
