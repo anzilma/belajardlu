@@ -1,0 +1,114 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, #fffdfd, #ffe6f0);
+  color: #333;
+}
+
+header {
+  background-color: #ff4d6d;
+  color: white;
+  padding: 1em;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+marquee {
+  background-color: #fff;
+  color: #ff4d6d;
+  font-weight: bold;
+  padding: 8px 0;
+}
+
+.produk-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  padding: 30px;
+  animation: fadeIn 1.5s ease-in;
+}
+
+.produk {
+  background: #fff;
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 250px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.produk:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.produk img {
+  max-width: 100%;
+  border-radius: 12px;
+}
+
+.produk h2 {
+  font-size: 18px;
+  margin: 10px 0 5px;
+}
+
+.produk p {
+  font-size: 16px;
+  color: #ff4d6d;
+  font-weight: bold;
+}
+
+button {
+  background-color: #ff4d6d;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #e60039;
+}
+
+footer {
+  text-align: center;
+  background-color: #222;
+  color: white;
+  padding: 1em;
+  margin-top: 50px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.keranjang {
+  margin: 30px auto;
+  width: 90%;
+  max-width: 600px;
+  background: #fff8f8;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(255, 77, 109, 0.2);
+}
+
+.keranjang h2 {
+  color: #ff4d6d;
+  margin-bottom: 10px;
+}
+
+.keranjang ul {
+  list-style: none;
+  padding: 0;
+}
+
+.keranjang li {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
